@@ -25,7 +25,7 @@ for pkg in "${DIST_DIR}"/*.tar.xz; do
     echo
     echo "${description}"
     echo
-    echo "#### Devices"
+    echo "#### Supported devices"
     echo
 
     for dev in "${device_definitions[@]}"; do
