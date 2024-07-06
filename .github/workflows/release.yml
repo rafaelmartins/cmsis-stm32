@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: read-all
+
+concurrency:
+  group: ${{ github.workflow }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  metadata:
+    runs-on: ubuntu-22.04
+
+    outputs:
+      build: ${{ steps.matrix.outputs.build }}
+      timestamp: ${{ steps.timestamp.outputs.timestamp }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate build matrix
+        id: matrix
+        run: |
+          build="$(./metadata.sh)"
+          echo "build=${build}" >> $GITHUB_OUTPUT
+
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+
+  build:
+    runs-on: ubuntu-22.04
+    needs:
+      - metadata
+
+    strategy:
+      matrix:
+        build: ${{ fromJSON(needs.metadata.outputs.build) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build package
+        env:
+          CMSIS_TIMESTAMP: ${{ needs.metadata.outputs.timestamp }}
+        run: ./build.sh "${{ matrix.build }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.build }}
+          path: dist/*.tar.xz
+
+  deploy:
+    runs-on: ubuntu-22.04
+    needs:
+      - metadata
+      - build
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Generate release body
+        run: ./release.sh > release.md
+
+      - name: Generate CMake index
+        run: ./cmake-index.sh > dist/index.cmake
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: dist/*
+          tag: cmsis-stm32-${{ needs.metadata.outputs.timestamp }}
+          commit: ${{ github.sha }}
+          bodyFile: release.md
