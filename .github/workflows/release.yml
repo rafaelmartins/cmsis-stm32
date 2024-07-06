@@ -85,10 +85,11 @@ jobs:
       - name: Generate CMake index
         run: ./cmake-index.sh > dist/index.cmake
 
-      - name: Create release
-        uses: ncipollo/release-action@v1
+      - uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5
         with:
           artifacts: dist/*
-          tag: cmsis-stm32-${{ needs.metadata.outputs.timestamp }}
+          name: cmsis-stm32-${{ needs.metadata.outputs.timestamp }}
+          tag: ${{ needs.metadata.outputs.timestamp }}
           commit: ${{ github.sha }}
           bodyFile: release.md
+          artifactErrorsFailBuild: true
