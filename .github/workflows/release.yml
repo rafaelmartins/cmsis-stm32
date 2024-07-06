@@ -83,6 +83,8 @@ jobs:
         run: ./release.sh > release.md
 
       - name: Generate CMake index
+        env:
+          CMSIS_TIMESTAMP: ${{ needs.metadata.outputs.timestamp }}
         run: ./cmake-index.sh > dist/index.cmake
 
       - uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5
