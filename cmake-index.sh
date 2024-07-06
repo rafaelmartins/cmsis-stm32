@@ -16,7 +16,7 @@ echo ")"
 for pkg in "${DIST_DIR}"/*.tar.xz; do
     full="$(basename "${pkg%.*.*}")"
     family="$(echo "${full}" | cut -d- -f2)"
-    echo "set(STM32_DIST_${family} \"${pkg}\")"
+    echo "set(STM32_DIST_${family} \"${full}\")"
     echo "set(STM32_DIST_MD5_${family} \"$(md5sum "${pkg}" | cut -d' ' -f1)\")"
 done
 echo
