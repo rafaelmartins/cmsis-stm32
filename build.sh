@@ -29,8 +29,8 @@ REQUIRED_PACKAGE_VARS=(
     version
 )
 
-if [[ ! -x "${PACKAGES_DIR}/${PACKAGE}.sh" ]]; then
-    die "invalid package: ${PACKAGE}"
+if [[ ! -f "${PACKAGES_DIR}/${PACKAGE}.sh" ]]; then
+    die "package not found: ${PACKAGE}"
 fi
 
 if [[ -z "${CMSIS_TIMESTAMP:-}" ]]; then
