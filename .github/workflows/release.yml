@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '*.sh'
+      - 'packages/*.sh'
+
   workflow_dispatch:
 
 permissions: read-all
