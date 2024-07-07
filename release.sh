@@ -8,6 +8,9 @@ DIST_DIR="${ROOT_DIR}/dist"
 
 echo "## Packages"
 echo
+echo "Each device definition may support more devices than those matching its pattern."
+echo "Please check the main device header for details."
+echo
 
 for pkg in "${DIST_DIR}"/*.tar.xz; do
     full="$(basename "${pkg%.*.*}")"
@@ -25,7 +28,11 @@ for pkg in "${DIST_DIR}"/*.tar.xz; do
     echo
     echo "${description}"
     echo
-    echo "#### Supported devices"
+    echo "#### Device header"
+    echo
+    echo "\`${family_definition,,}.h\`"
+    echo
+    echo "#### Device definitions"
     echo
 
     for dev in "${device_definitions[@]}"; do
