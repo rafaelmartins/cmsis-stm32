@@ -77,6 +77,10 @@ for dev in "${device_definitions[@]}"; do
     fi
 
     cat > "${PKGDIR}/${P}/cmake/${dev,,}.cmake" <<EOF
+if(TARGET CMSIS::${dev})
+    return()
+endif()
+
 add_library(CMSIS::${dev} INTERFACE IMPORTED)
 
 target_sources(CMSIS::${dev} INTERFACE
