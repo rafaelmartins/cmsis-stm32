@@ -77,7 +77,7 @@ for dev in "${device_definitions[@]}"; do
     fi
 
     cat > "${PKGDIR}/${P}/cmake/${dev,,}.cmake" <<EOF
-function stm32_cmsis_add_library_${dev,,}(name)
+function(stm32_cmsis_add_library_${dev,,} name)
     if(TARGET \${name})
         return()
     endif()
