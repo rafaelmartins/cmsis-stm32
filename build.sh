@@ -77,40 +77,42 @@ for dev in "${device_definitions[@]}"; do
     fi
 
     cat > "${PKGDIR}/${P}/cmake/${dev,,}.cmake" <<EOF
-function(stm32_cmsis_add_library_${dev,,} name)
-    if(TARGET \${name})
-        return()
-    endif()
+if(NOT DEFINED cmsis_stm32_library_target_name)
+    set(cmsis_stm32_library_target_name CMSIS::${dev})
+endif()
 
-    add_library(\${name} INTERFACE IMPORTED)
+if(TARGET \${cmsis_stm32_library_target_name})
+    return()
+endif()
 
-    target_sources(\${name} INTERFACE
-        \${CMAKE_CURRENT_LIST_DIR}/../src/startup_${dev,,}.s
-        \${CMAKE_CURRENT_LIST_DIR}/../src/system_${family_definition,,}.c
-    )
+add_library(\${cmsis_stm32_library_target_name} INTERFACE IMPORTED)
 
-    target_include_directories(\${name} INTERFACE
-        \${CMAKE_CURRENT_LIST_DIR}/../include
-    )
+target_sources(\${cmsis_stm32_library_target_name} INTERFACE
+    \${CMAKE_CURRENT_LIST_DIR}/../src/startup_${dev,,}.s
+    \${CMAKE_CURRENT_LIST_DIR}/../src/system_${family_definition,,}.c
+)
 
-    target_compile_definitions(\${name} INTERFACE
-        ${family_definition}=1
-        ${dev}=1
-    )
+target_include_directories(\${cmsis_stm32_library_target_name} INTERFACE
+    \${CMAKE_CURRENT_LIST_DIR}/../include
+)
 
-    target_compile_options(\${name} INTERFACE
-        -mcpu=${cpu}${fpu_val}
-        -mthumb
-    )
+target_compile_definitions(\${cmsis_stm32_library_target_name} INTERFACE
+    ${family_definition}=1
+    ${dev}=1
+)
 
-    target_link_options(\${name} INTERFACE
-        -mcpu=${cpu}${fpu_val}
-        -mthumb
-        -specs=nano.specs
-        -Wl,--gc-sections
-        -Wl,--no-warn-rwx-segments
-    )
-endfunction()
+target_compile_options(\${cmsis_stm32_library_target_name} INTERFACE
+    -mcpu=${cpu}${fpu_val}
+    -mthumb
+)
+
+target_link_options(\${cmsis_stm32_library_target_name} INTERFACE
+    -mcpu=${cpu}${fpu_val}
+    -mthumb
+    -specs=nano.specs
+    -Wl,--gc-sections
+    -Wl,--no-warn-rwx-segments
+)
 EOF
 done
 
