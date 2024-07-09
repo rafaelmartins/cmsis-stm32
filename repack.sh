@@ -12,8 +12,8 @@ fi
 tmpdir="$(mktemp -d)"
 trap 'rm -rf -- "${tmpdir}"' EXIT
 
-mkdir -p "${tmpdir}/stm32-cmsis-${CMSIS_TIMESTAMP}"
-pushd "${tmpdir}/stm32-cmsis-${CMSIS_TIMESTAMP}" > /dev/null
+mkdir -p "${tmpdir}/cmsis-stm32-${CMSIS_TIMESTAMP}"
+pushd "${tmpdir}/cmsis-stm32-${CMSIS_TIMESTAMP}" > /dev/null
 
 for pkg in "${DIST_DIR}"/*.tar.xz; do
     dir="cmsis-$(echo "$(basename "${pkg}")" | cut -d- -f2)"
@@ -45,5 +45,5 @@ tar \
     --verbose \
     --xz \
     --directory="${tmpdir}" \
-    --file="${DIST_DIR}/stm32-cmsis-${CMSIS_TIMESTAMP}.tar.xz" \
-    "stm32-cmsis-${CMSIS_TIMESTAMP}"
+    --file="${DIST_DIR}/cmsis-stm32-${CMSIS_TIMESTAMP}.tar.xz" \
+    "cmsis-stm32-${CMSIS_TIMESTAMP}"
