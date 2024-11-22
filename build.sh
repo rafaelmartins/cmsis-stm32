@@ -118,36 +118,36 @@ done
 
 for hdr in "${cmsis_headers[@]}"; do
     cp \
-        --verbose \
+        -v \
         "${REPODIR}/Drivers/CMSIS/Core/Include/${hdr}" \
         "${PKGDIR}/${P}/include/"
 done
 
 for dev in "${device_definitions[@]}"; do
     cp \
-        --verbose \
+        -v \
         "${REPODIR}/Drivers/CMSIS/Device/ST/${family_definition}/Include/${dev,,}.h" \
         "${PKGDIR}/${P}/include/"
 
     cp \
-        --verbose \
+        -v \
         "${REPODIR}/Drivers/CMSIS/Device/ST/${family_definition}/Source/Templates/gcc/startup_${dev,,}.s" \
         "${PKGDIR}/${P}/src/"
 done
 
 cp \
-    --verbose \
+    -v \
     "${REPODIR}/Drivers/CMSIS/Device/ST/${family_definition}/Include/"{,system_}"${family_definition,,}.h" \
     "${PKGDIR}/${P}/include/"
 
 if [[ -n "${system_source:-}" ]]; then
     cp \
-        --verbose \
+        -v \
         "${REPODIR}/Drivers/CMSIS/Device/ST/${family_definition}/Source/Templates/${system_source}" \
         "${PKGDIR}/${P}/src/system_${family_definition,,}.c"
 else
     cp \
-        --verbose \
+        -v \
         "${REPODIR}/Drivers/CMSIS/Device/ST/${family_definition}/Source/Templates/system_${family_definition,,}.c" \
         "${PKGDIR}/${P}/src/"
 fi

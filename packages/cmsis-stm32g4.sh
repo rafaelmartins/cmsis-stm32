@@ -1,4 +1,4 @@
-version=1.6.0
+version=1.6.1
 description="CMSIS headers for STM32G4 Series of ARM Cortex-M4 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeG4
@@ -6,6 +6,8 @@ github_repository=STMicroelectronics/STM32CubeG4
 family_definition=STM32G4xx
 
 device_definitions=(
+    STM32G411xB
+    STM32G411xC
     STM32G414xx
     STM32G431xx
     STM32G441xx

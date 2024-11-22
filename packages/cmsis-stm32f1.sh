@@ -1,4 +1,4 @@
-version=1.8.5
+version=1.8.6
 description="CMSIS headers for STM32F1 Series of ARM Cortex-M3 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeF1
