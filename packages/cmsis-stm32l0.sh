@@ -1,4 +1,4 @@
-version=1.12.2
+version=1.12.3
 description="CMSIS headers for STM32L0 Series of ARM Cortex-M0+ microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeL0

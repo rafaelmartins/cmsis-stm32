@@ -1,4 +1,4 @@
-version=1.17.2
+version=1.17.4
 description="CMSIS headers for STM32F7 Series of ARM Cortex-M7 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeF7

@@ -1,4 +1,4 @@
-version=1.28.1
+version=1.28.3
 description="CMSIS headers for STM32F4 Series of ARM Cortex-M4 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeF4

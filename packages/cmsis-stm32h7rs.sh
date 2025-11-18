@@ -1,4 +1,4 @@
-version=1.1.0
+version=1.2.0
 description="CMSIS headers for STM32H7RS Series of ARM Cortex-M7 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeH7RS

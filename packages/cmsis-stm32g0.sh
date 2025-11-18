@@ -15,9 +15,9 @@ device_definitions=(
     STM32G070xx
     STM32G071xx
     STM32G081xx
-    STM32G0b0xx
-    STM32G0b1xx
-    STM32G0c1xx
+    STM32G0B0xx
+    STM32G0B1xx
+    STM32G0C1xx
 )
 
 cmsis_headers=(

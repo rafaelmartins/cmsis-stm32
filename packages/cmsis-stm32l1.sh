@@ -1,4 +1,4 @@
-version=1.10.4
+version=1.10.5
 description="CMSIS headers for STM32L1 Series of ARM Cortex-M3 microcontrollers"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeL1
@@ -14,19 +14,19 @@ device_definitions=(
     STM32L151xC
     STM32L151xCA
     STM32L151xD
-    STM32L151xDx
+    STM32L151xDX
     STM32L151xE
     STM32L152xB
     STM32L152xBA
     STM32L152xC
     STM32L152xCA
     STM32L152xD
-    STM32L152xDx
+    STM32L152xDX
     STM32L152xE
     STM32L162xC
     STM32L162xCA
     STM32L162xD
-    STM32L162xDx
+    STM32L162xDX
     STM32L162xE
 )
 

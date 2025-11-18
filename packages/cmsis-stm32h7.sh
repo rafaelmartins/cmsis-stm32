@@ -1,4 +1,4 @@
-version=1.11.2
+version=1.12.1
 description="CMSIS headers for STM32H7 Series of ARM Cortex-M7 microcontrollers (single-core only)"
 license=Apache-2.0
 github_repository=STMicroelectronics/STM32CubeH7
@@ -14,8 +14,14 @@ device_definitions=(
     STM32H735xx
     STM32H742xx
     STM32H743xx
+    STM32H745xG
+    STM32H745xx
+    STM32H747xG
+    STM32H747xx
     STM32H750xx
     STM32H753xx
+    STM32H755xx
+    STM32H757xx
     STM32H7A3xx
     STM32H7A3xxQ
     STM32H7B0xx
